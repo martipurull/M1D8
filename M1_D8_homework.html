@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <header onclick="makeItClickable()">
+  <header onclick="makeItClickable(event)">
     <h1>This is the title of the page</h1>
     <h2>This is the subtitle of the page</h2>
   </header>
@@ -36,7 +36,8 @@
     </div>
 
     <div>
-      <input type="text" id="input-field" placeholder="input field for the exercise" />
+      <input onkeyup="logInputAfterKeyStroke(event)" type="text" id="input-field"
+        placeholder="input field for the exercise" />
     </div>
   </main>
 
@@ -141,20 +142,16 @@
     /* EXERCISE 9
      Make the heading of the page change color every time the user clicks on it.
     */
-    const changeHeaderColour = function (e) {
+
+    const makeItClickable = function (e) {
       let clickedNode = e.target
       let randomColour = `#${ Math.floor(Math.random() * 16777216).toString() }`
       clickedNode.style.color = randomColour
-    }
-
-    const makeItClickable = function (e) {
       let header = document.querySelector('header')
-      header.addEventListener('click', changeHeaderColour)
+      header.addEventListener('click', makeItClickable)
 
       //
     };
-
-
 
     /* EXERCISE 10
      Change the footer text with something else when the user clicks on it.
@@ -170,8 +167,12 @@
     /* EXERCISE 11
      Attach an event listener to the input field in the page for console logging its value just after any keystroke.
     */
+    const logInputAfterKeyStroke = function (e) {
+      const inputField = document.getElementById("input-field");
+      inputField.addEventListener('onkeyup', logInputAfterKeyStroke)
+      console.log(inputField.value)
+    }
 
-    const inputField = document.getElementById("input-field");
     // ...
 
     /* EXERCISE 12
@@ -179,6 +180,7 @@
     */
 
     window.onload = function () {
+      alert('THE PAGE LOADED CORRECTLY JUST THIS ONCE')
       //
     };
 
