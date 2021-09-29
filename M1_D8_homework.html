@@ -16,29 +16,32 @@
 
   <main>
     <hr />
+    <section id="listSection">
+      <ul id="firstList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
 
-    <ul id="firstList">
-      <li>1st</li>
-      <li>2nd</li>
-      <li>3rd</li>
-    </ul>
-
-    <ul id="secondList">
-      <li>1st</li>
-      <li>2nd</li>
-      <li>3rd</li>
-    </ul>
+      <ul id="secondList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+    </section>
 
     <a href="strive.school">This link goes to Strive School</a>
 
-    <div>
-      <p>This text is just for the exercise</p>
-    </div>
+    <section id="divSection">
+      <div>
+        <p>This text is just for the exercise</p>
+      </div>
 
-    <div>
-      <input onkeyup="logInputAfterKeyStroke(event)" type="text" id="input-field"
-        placeholder="input field for the exercise" />
-    </div>
+      <div>
+        <input onkeyup="logInputAfterKeyStroke(event)" type="text" id="input-field"
+          placeholder="input field for the exercise" />
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -48,6 +51,14 @@
       questions!
     </h2>
   </footer>
+  <button onclick="changeTitle('NEW TITLE HAS BEEN DEFINED')">change title</button>
+  <button onclick="addClassToTitle()">add class to title</button>
+  <button onclick="changePcontent()">change p content</button>
+  <button onclick="changeUrls()">change urls</button>
+  <button onclick="addToTheSecond('4th')">add to second list</button>
+  <button onclick="addParagraph('I am a new paragraph, a rather small one.')">add paragraph</button>
+  <button onclick="firstUlDisappear()">make first ul disappear</button>
+  <button onclick="paintItGreen()">paint uls green</button>
   <script>
     /* EXERCISE 1
      Write a function for changing the title of the document in something else.
@@ -76,7 +87,7 @@
     const changePcontent = function () {
       let psOfDivs = document.querySelectorAll('div p')
       for (let p of psOfDivs) {
-        p.innerText = 'NEWLY CHANGED TEXT'
+        p.innerText = 'NEWLY CHANGED P CONTENT'
       }
       //
     };
@@ -187,6 +198,9 @@
     /* EXERCISE 13
      Use HTML5 tags to properly provide semantic meaning to the different portions of the page.
     */
+
+    // MOST OF THE SEMANTIC TAGS WERE ALREADY THERE, LIKE HEADER, MAIN, FOOTER.
+    // JUST ADDED TWO SECTIONS WITH IDS THAT REFER TO THEIR CONTENT: listSection and divSection
   </script>
 </body>
 
