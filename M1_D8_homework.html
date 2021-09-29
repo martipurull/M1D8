@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <header onclick="makeItClickable(event)">
+  <header>
     <h1>This is the title of the page</h1>
     <h2>This is the subtitle of the page</h2>
   </header>
@@ -38,14 +38,13 @@
       </div>
 
       <div>
-        <input onkeyup="logInputAfterKeyStroke(event)" type="text" id="input-field"
-          placeholder="input field for the exercise" />
+        <input type="text" id="input-field" placeholder="input field for the exercise" />
       </div>
     </section>
   </main>
 
-  <footer>
-    <p onclick="changeFooterText()">And this text is just for the exercise too!</p>
+  <footer class="footer">
+    <p>And this text is just for the exercise too!</p>
     <h2 style="color: red">
       Save this page on your computer and open it with VSCode to get the
       questions!
@@ -116,6 +115,8 @@
       //
     };
 
+    //can also use secondList.innerHTML += `${li}${content}${/li}` CHECK WITH SOLUTION
+
     /* EXERCISE 6
      Write a function for adding a second paragraph to the first div.
     */
@@ -127,6 +128,8 @@
       firstDiv.appendChild(newParagraph)
       //
     };
+
+    //as in previous exercise, we can do firstDive.innerHTML += `${p}${content}${p}`
 
     /* EXERCISE 7
      Write a function for making the first unordered list disappear.
@@ -154,37 +157,63 @@
      Make the heading of the page change color every time the user clicks on it.
     */
 
-    const makeItClickable = function (e) {
-      let clickedNode = e.target
-      let randomColour = `#${ Math.floor(Math.random() * 16777216).toString() }`
-      clickedNode.style.color = randomColour
-      let header = document.querySelector('header')
-      header.addEventListener('click', makeItClickable)
+    // const makeItClickable = function (e) {
+    //   let clickedNode = e.target
+    //   let randomColour = `#${ Math.floor(Math.random() * 16777216).toString() }`
+    //   clickedNode.style.color = randomColour
+    //   let header = document.querySelector('header')
+    //   header.addEventListener('click', makeItClickable)
 
-      //
+    //   //
+    // };
+
+    // BETTER OPTION (using mouseover instead of click just for shits and giggles) AFTER CHECKING SOLUTION:
+
+    const makeItClickable = function () {
+      const header = document.querySelector('h1')
+      header.addEventListener('mouseover', function (e) {
+        const randomColour = `#${ Math.floor(Math.random() * 16777216).toString() }`
+        e.target.style.backgroundColor = randomColour
+      })
     };
+    makeItClickable()
 
     /* EXERCISE 10
      Change the footer text with something else when the user clicks on it.
     */
+    // const changeFooterText = function () {
+    //   let footerText = document.querySelectorAll('footer p')
+    //   for (let footer of footerText) {
+    //     footer.innerText = 'NEWLY CLICK-GENERATED TEXT'
+    //   }
+    //   //
+    // };
+
+    //BETTER OPTION AFTER CHECKING SOLUTION:
+
     const changeFooterText = function () {
-      let footerText = document.querySelectorAll('footer p')
-      for (let footer of footerText) {
-        footer.innerText = 'NEWLY CLICK-GENERATED TEXT'
-      }
-      //
-    };
+      const footerText = document.querySelector('.footer')
+      footerText.addEventListener('click', function (e) {
+        e.target.innerText = 'NEWLY CLICK-GENERATED TEXT'
+      })
+    }
+    changeFooterText()
 
     /* EXERCISE 11
      Attach an event listener to the input field in the page for console logging its value just after any keystroke.
     */
-    const logInputAfterKeyStroke = function (e) {
-      const inputField = document.getElementById("input-field");
-      inputField.addEventListener('onkeyup', logInputAfterKeyStroke)
-      console.log(inputField.value)
-    }
+    // const logInputAfterKeyStroke = function (e) {
+    //   const inputField = document.getElementById("input-field");
+    //   inputField.addEventListener('onkeyup', logInputAfterKeyStroke)
+    //   console.log(inputField.value)
+    // }
 
-    // ...
+    // BETTER OPTION AFTER CHECKING SOLUTION:
+
+    const inputField = document.getElementById('input-field')
+    inputField.addEventListener('keyup', function (e) {
+      console.log(e.target.value)
+    })
 
     /* EXERCISE 12
      Create a welcome alert message when the page successfully loads.
